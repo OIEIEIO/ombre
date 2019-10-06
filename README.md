@@ -1,135 +1,13 @@
-# Ombre
-Copyright (c) 2019, The Ombre Cryptocurrency Project
+### Build for Ubuntu 16.04
 
-Copyright (c) 2018, Ryo Currency Project
-
-Copyright (c) 2017, Sumokoin.org
-
-Copyright (c) 2014-2017, The Monero Project
-
-Copyright (c) 2012-2013, The Cryptonote developers
-
-## Development Resources
-
-- Web: [www.ombre.network](http://www.ombre.network)
-- GitHub: [https://github.com/ombre-project/ombre](https://github.com/ombre-project/ombre)
-
-## Introduction
-
-Ombre is a cryptonote currency and an indirect for of the well-known Monero currency. Inherited from Monero are strong security, privacy and untraceability features that form a solid basis for further development. Our mission is to enhance the cryptonote protocol to provide a **lightweight**, **secure**, **well maintained** and **actively developed** (no-nonsense) coin.
-
-Some main differences compared to other cryptonote coins are:
-
- - We use a 60 second block window which reduce transaction times
- - We enforce a minimum transaction mixin of 10 to fight blockchain analysis which could compromise privacy
- - We actively cooperate with other cryptonote coins and do not treat them as competition.
-
-
-## Development funding
-
-We do not have a premine. Instead we have a project development reward that causes coins to unlock 0.02% with every block that is found. 
-
-The development fee will be used to pay for development, exchanges and marketing.
-
-## Coin Supply & Emission
-
-- **Total supply**: **500,000,000** coins in first 20 years which is followed by a tail emission each year for inflation.
-- **Coin symbol**: **OMB**
-- **Coin Units**:
-  + 1 NanoOmbre &nbsp;= 0.000000001 **OMB** (10<sup>-9</sup> - _the smallest coin unit_)
-  + 1 MicroOmbre = 0.000001 **OMB** (10<sup>-6</sup>)
-  + 1 MilliOmbre = 0.001 **OMB** (10<sup>-3</sup>)
-- **Hash algorithm**: CryptoNight (Proof-Of-Work)
-- **Emission scheme**: Ombre's block reward changes _every 6-months_ as the following "Camel" distribution* (inspired by _real-world mining production_ like of crude oil, coal etc. that is often slow at first,
-accelerated in the next few years before declined and depleted). This great emission scheme was first introduced in Sumokoin.
-
-## Roadmap 2019
-
-### Q3: Android wallet
-We will release an Android wallet which will use remote wallet nodes to scan the blockchain for transactions.
-
-One problem with existing Android wallets for cryptonote coins is that they use close to 1GB of data (Sumokoin) to scan the blockchain. we will solve this by allowing the Android wallet to send the wallet's viewkey to the remote wallet node. With this approach the transaction scanning can be done server side and this will significantly increase the performance of the wallet.
-
-All wallet connections will be SSL encrypted and official wallet nodes will be provided.
-
-### Q3. Blockchain protocol optimisations
-The blockchain network communication is not optimized and, for example, doesn't even use compression on large data exchanges. We will add compression and will look into modernizing the RPC protocols.
-
-### Q4. Security audit
-We plan on doing a full security audit of the codebase and will setup fuzzing for all exposed network logic. Additionally security enhancements are planned for the ombred daemon, the GUI wallet and the communication channel between both.
-
-### Q3. Web wallet
-For this roadmap item we would like to have community feedback first: we think a web wallet would be very convenient for our users but we'll be on the lookout for feedback before starting the implementation.
-
-### Q4. Global pool balancer ((under consideration)
-We will implement a lightweight and yet protocol aware loadbalancer to spread the mining load on our network across pools evenly. We will create an incentive for pool owners and miners to join the loadbalancer. A healthy spread of the mining across multiple pools is highly beneficial for the stability of the coin.
-
-
-## About this Project
-
-This is the core implementation of Ombre. It is open source and completely free to use without restrictions, except for those specified in the license agreement below. There are no restrictions on anyone creating an alternative implementation of Ombre that uses the protocol and network in a compatible manner.
-
-As with many development projects, the repository on Github is considered to be the "staging" area for the latest changes. Before changes are merged into that branch on the main repository, they are tested by individual developers in their own branches, submitted as a pull request, and then subsequently tested by contributors who focus on testing and code reviews. That having been said, the repository should be carefully considered before using it in a production environment, unless there is a patch in the repository for a particular show-stopping issue you are experiencing. It is generally a better idea to use a tagged release for stability.
-
-**Anyone is welcome to contribute to Ombre's codebase!** If you have a fix or code change, feel free to submit is as a pull request directly to the "master" branch. In cases where the change is relatively small or does not affect other parts of the codebase it may be merged in immediately by any one of the collaborators. On the other hand, if the change is particularly large or complex, it is expected that it will be discussed at length either well in advance of the pull request being submitted, or even directly on the pull request.
-
-## License
-
-Please view [LICENSE](LICENSE)
-
-[![License](https://img.shields.io/badge/license-BSD3-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)
-
-## Precompiled binaries
-
-Along with each release you can find our [precompiled binaries](https://github.com/ombre-project/ombre/releases).
-To verify that the downloaded binaries are created by one of our developer please verify the checksums.
-The authenticity of the checksums can by verified with the [PGP-key's](docs/pgp_keys.md).
-
-## Compiling ombre from source
-
-### Dependencies
-
-The following table summarizes the tools and libraries required to build. A
-few of the libraries are also included in this repository (marked as
-"Vendored"). By default, the build uses the library installed on the system,
-and ignores the vendored sources. However, if no library is found installed on
-the system, then the vendored source will be built and used. The vendored
-sources are also used for statically-linked builds because distribution
-packages often include only shared library binaries (`.so`) but not static
-library archives (`.a`).
-
-| Dep          | Min. version  | Vendored | Debian/Ubuntu pkg  | Arch pkg     | Fedora            | Optional | Purpose        |
-| ------------ | ------------- | -------- | ------------------ | ------------ | ----------------- | -------- | -------------- |
-| GCC          | 4.7.3         | NO       | `build-essential`  | `base-devel` | `gcc`             | NO       |                |
-| CMake        | 3.0.0         | NO       | `cmake`            | `cmake`      | `cmake`           | NO       |                |
-| pkg-config   | any           | NO       | `pkg-config`       | `base-devel` | `pkgconf`         | NO       |                |
-| Boost        | 1.58          | NO       | `libboost-all-dev` | `boost`      | `boost-devel`     | NO       | C++ libraries  |
-| OpenSSL      | basically any | NO       | `libssl-dev`       | `openssl`    | `openssl-devel`   | NO       | sha256 sum     |
-| libzmq       | 3.0.0         | NO       | `libzmq3-dev`      | `zeromq`     | `cppzmq-devel`    | NO       | ZeroMQ library |
-| libunbound   | 1.4.16        | YES      | `libunbound-dev`   | `unbound`    | `unbound-devel`   | NO       | DNS resolver   |
-| libsodium    | ?             | NO       | `libsodium-dev`    | ?            | `libsodium-devel` | NO       | libsodium      |
-| libminiupnpc | 2.0           | YES      | `libminiupnpc-dev` | `miniupnpc`  | `miniupnpc-devel` | YES      | NAT punching   |
-| libunwind    | any           | NO       | `libunwind8-dev`   | `libunwind`  | `libunwind-devel` | YES      | Stack traces   |
-| liblzma      | any           | NO       | `liblzma-dev`      | `xz`         | `xz-devel`        | YES      | For libunwind  |
-| libreadline  | 6.3.0         | NO       | `libreadline6-dev` | `readline`   | `readline-devel`  | YES      | Input editing  |
-| ldns         | 1.6.17        | NO       | `libldns-dev`      | `ldns`       | `ldns-devel`      | YES      | SSL toolkit    |
-| expat        | 1.1           | NO       | `libexpat1-dev`    | `expat`      | `expat-devel`     | YES      | XML parsing    |
-| GTest        | 1.5           | YES      | `libgtest-dev`^    | `gtest`      | `gtest-devel`     | YES      | Test suite     |
-| Doxygen      | any           | NO       | `doxygen`          | `doxygen`    | `doxygen`         | YES      | Documentation  |
-| Graphviz     | any           | NO       | `graphviz`         | `graphviz`   | `graphviz`        | YES      | Documentation  |
-
-
-[^] On Debian/Ubuntu `libgtest-dev` only includes sources and headers. You must
-build the library binary manually. This can be done with the following command ```sudo apt-get install libgtest-dev && cd /usr/src/gtest && sudo cmake . && sudo make && sudo mv libg* /usr/lib/ ```
-
-Debian / Ubuntu one liner for all dependencies  
+Debian / Ubuntu one liner for all dependencies needed for Ubuntu 16.04  
 ``` sudo apt update && sudo apt install build-essential cmake pkg-config libboost-all-dev libssl-dev libzmq3-dev libunbound-dev libsodium-dev libunwind8-dev liblzma-dev libreadline6-dev libldns-dev libexpat1-dev doxygen graphviz libpgm-dev```
 
 ### Cloning the repository
 
 Clone recursively to pull-in needed submodule(s):
 
-`$ git clone https://github.com/ombre-project/ombre.git`
+`$ git clone -b oieieio https://github.com/ombre-project/ombre.git`
 
 If you already have a repo cloned, initialize and update:
 
