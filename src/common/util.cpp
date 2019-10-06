@@ -609,10 +609,7 @@ bool on_startup()
 	const char *ver = gnu_get_libc_version();
 	if(!strcmp(ver, "2.25"))
 		MCLOG_RED(el::Level::Warning, "global", "Running with glibc " << ver << ", hangs may occur - change glibc version if possible");
-#endif
 
-#if OPENSSL_VERSION_NUMBER < 0x10100000 || defined(LIBRESSL_VERSION_TEXT)
-	OPENSSL_init_ssl(0, NULL);
 #endif
 
 	if(!unbound_built_with_threads())
